@@ -99,7 +99,7 @@ function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageNa
             }
         }
 
-        if (sender == '오한새') {
+        if (sender == 'your name') {
             if (msg.startsWith(commanderPrefix + '찾기 ')) {
                 let userName = msg.substr(4);
                 let find = sql.query('SELECT * FROM USER WHERE NAME = "' + userName + '"');
