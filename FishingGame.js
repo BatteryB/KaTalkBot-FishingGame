@@ -109,6 +109,26 @@ function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageNa
             }
         }
 
+        if (msg.startsWith(prefix + '낚시 일괄 판매 ')) {
+            let findedUser = findUser(sender);
+            if (findedUser == true) {
+                let fish = String(msg.substr(10));
+                let checkFish = sql.query('SELECT ' + fish + ' FROM FISH WHERE NAME = "' + sender + '"');
+                checkFish.moveToFirst();
+                let userFish = {
+                    fish: checkFish.getInt(0)
+                };
+                let Parameters = [fish];
+                let sales = checkingFish(Parameters);
+                sql.query('UPDATE FISH SET ' + fish + ' = ' + fish + ' - ' + Number(userFish.fish) + ' WHERE NAME = "' + sender + '"');
+                sql.query('UPDATE USER SET MONEY = MONEY + ' + Number(userFish.fish) * sales + ' WHERE NAME = "' + sender + '"');
+
+                replier.reply(sender + '\n' + fish + ' 일괄판매 완료\n' + fish + ' -' + userFish.fish + '\n돈 +' + Number(userFish.fish) * sales);
+            } else {
+                replier.reply('먼저 가입을 해주세요.');
+            }
+        }
+
         if (msg == prefix + '낚시 강화') {
             let findedUser = findUser(sender);
             if (findedUser == true) {
