@@ -20,7 +20,7 @@ function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageNa
         if (msg == prefix + '낚시 가입') {
             let findedUser = findUser(sender);
             if (findedUser == false) {
-                sql.query('INSERT INTO USER VALUES("' + sender + '", 0, 0, 0)');
+                sql.query('INSERT INTO USER VALUES("' + sender + '", 1, 0, 0)');
                 sql.query('INSERT INTO FISH VALUES("' + sender + '", 0, 0, 0, 0, 0, 0, 0, 0)');
                 replier.reply('가입 완료 되었습니다.');
                 replier.reply('*주의*\n닉네임 변경 시 계정을 못 찾을 수 있습니다.');
