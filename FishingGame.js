@@ -131,7 +131,6 @@ function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageNa
                     오징어: userFish.getInt(12),
                     철갑상어: userFish.getInt(13),
                     무지개송어: userFish.getInt(14)
-
                 };
 
                 let item = {
