@@ -13,16 +13,6 @@ const level_4 = ['연어', '돌돔'];
 
 function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
     if (room == 'your room name') {
-        if (msg.startsWith(prefix + '확인 ')) {
-            let fish = msg.substr(4);
-            let findFish = sql.query('SELECT ' + fish + ' FROM FISH');
-            findFish.moveToFirst();
-            let f = {
-                fish: findFish.getInt(0)
-            }
-            replier.reply(JSON.stringify(f, null, 4));
-        }
-
         if (msg == prefix + '낚시' || msg == prefix + '낚시 명령어') {
             replier.reply(help());
         }
