@@ -63,25 +63,25 @@ function responseFix(room, msg, sender, isGroupChat, replier, imageDB, packageNa
                         곡괭이: durability.getInt(1)
                     };
                     if (active == '채집') {
-                        if (item.장갑 >= 20) {
+                        if (item.장갑 >= 10) {
                             let collectTime = Math.floor(Math.random() * 30001) + 15000;
                             replier.reply(sender + '은(는) 실을 채집하기 위해 자연으로 떠났다.');
                             sql.query('UPDATE WHETHER SET COLLECTING_WHETHER = 1 WHERE NAME = "' + sender + '"');
-                            setTimeout(() => replier.reply(sender + '이(가) 자연에서 돌아왔다.\n실 +1\n장갑 내구도 -20%'), collectTime);
+                            setTimeout(() => replier.reply(sender + '이(가) 자연에서 돌아왔다.\n실 +1\n장갑 내구도 -10%'), collectTime);
                             sql.query('UPDATE USER SET THREAD = THREAD + 1 WHERE NAME = "' + sender + '"');
-                            sql.query('UPDATE ITEM SET 장갑 = 장갑 - 20 WHERE NAME = "' + sender + '"');
+                            sql.query('UPDATE ITEM SET 장갑 = 장갑 - 10 WHERE NAME = "' + sender + '"');
                             setTimeout(() => sql.query('UPDATE WHETHER SET COLLECTING_WHETHER = 0 WHERE NAME = "' + sender + '"'), collectTime);
                         } else {
                             replier.reply('채집을 하기 위한 장갑의 최소한의 내구도가 부족합니다.');
                         }
                     } else if (active == '채광') {
-                        if (item.곡괭이 >= 10) {
+                        if (item.곡괭이 >= 5) {
                             let miningTime = Math.floor(Math.random() * 30001) + 30000;
                             replier.reply(sender + '은(는) 철 채광을 위해 동굴로 들어갔다.');
                             sql.query('UPDATE WHETHER SET MINING_WHETHER = 1 WHERE NAME = "' + sender + '"');
-                            setTimeout(() => replier.reply(sender + '이(가) 동굴에서 나왔다.\n철조각 +1\n곡괭이 내구도 -10%'), miningTime);
+                            setTimeout(() => replier.reply(sender + '이(가) 동굴에서 나왔다.\n철조각 +1\n곡괭이 내구도 -5%'), miningTime);
                             sql.query('UPDATE USER SET IRONPIECE = IRONPIECE + 1 WHERE NAME = "' + sender + '"');
-                            sql.query('UPDATE ITEM SET 곡괭이 = 곡괭이 - 10 WHERE NAME = "' + sender + '"');
+                            sql.query('UPDATE ITEM SET 곡괭이 = 곡괭이 - 5 WHERE NAME = "' + sender + '"');
                             setTimeout(() => sql.query('UPDATE WHETHER SET MINING_WHETHER = 0 WHERE NAME = "' + sender + '"'), miningTime);
 
                         } else {
